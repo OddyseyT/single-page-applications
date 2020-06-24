@@ -21,7 +21,7 @@ const [formData, setFormData] = useState({
 
 const [errors, setErrors] = useState({
   name:"",
-  number: ""
+  number: 0
 });
 
 const schema = yup.object().shape({
@@ -102,18 +102,18 @@ const validateChange = e => {
                 {errors.name.length > 0 ? <p className='error'>{errors.name}</p> : null}
             </FormGroup>
             <FormGroup>
-        <Dropdown isOpen={dropdownOpen} toggle={toggle} onChange={handleChanges} value={formData.number} name="number">
+        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle caret >{formData.number === 0 ? "Quantity" : formData.number}
   </DropdownToggle>
-  {errors.number.length > 0 ? <p className="error">{errors.number}</p>: null}
+  
   <DropdownMenu>
   <option value={0} onClick={() => {
             toggle();
-            
+            setFormData({...formData, number: 0})
         }}>0</option>
         <option value={1} onClick={() => {
             toggle();
-            
+            setFormData({...formData, number: 1})
         }}>1</option>
           <option onClick={() => {
             toggle();
@@ -135,6 +135,7 @@ const validateChange = e => {
             toggle();
             setFormData({...formData, number: 6})
         }}>6</option>
+       {errors.number = 0 ? <p className="error">{errors.number}</p>: null}
           </DropdownMenu>
         </Dropdown>
           
